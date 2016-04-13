@@ -33,7 +33,8 @@ H5P.Chart.PieChart = (function () {
 
     // Create SVG
     var svg = wrapper
-      .append("svg").attr("aria-label", "Pie Chart: MyTitle");
+      .append("svg")
+      .attr("aria-label", "Pie Chart: MyTitle");
 
     var translater = svg.append("g")
       .attr({"class": "translater", "role":"list"});
@@ -46,7 +47,7 @@ H5P.Chart.PieChart = (function () {
     var arcs = translater.selectAll(".arc")
       .data(pie(dataSet))
       .enter().append("g")
-      .attr({"class": "arc", "role": "listitem", "tabIndex":0});
+      .attr({"class": "arc", "role": "listitem", "tabindex":0});
 
     var paths = arcs.append("path")
       .style("fill", function(d) {
