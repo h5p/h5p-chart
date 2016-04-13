@@ -7,7 +7,7 @@ H5P.Chart.BarChart = (function () {
    * @param {array} dataSet
    * @param {H5P.jQuery} $wrapper
    */
-  function BarChart(dataSet, $wrapper) {
+  function BarChart(dataSet, $wrapper, description) {
     var self = this;
 
     var defColors = d3.scale.ordinal()
@@ -29,16 +29,38 @@ H5P.Chart.BarChart = (function () {
       .scale(xScale)
       .orient("bottom")
       .tickFormat(function (d) {
-        return dataSet[d % dataSet.length].text;
+        return dataSet[d % dataSet.length].text + " " + dataSet[d % dataSet.length].value;
+
       });
 
+    var wrapper = d3.select($wrapper[0]);
+
+    // Create the description link and text of the chart
+    var descriptionLink = wrapper
+      .append("a")
+      .attr("href","javascript:void(0)")
+      .text("Click here to show text description of your chart")
+      .on("click",function(event){
+        H5P.jQuery(this)
+        .next()
+        .slideToggle();
+      });
+    var descriptionText = wrapper
+      .append("div")
+      .text(description)
+      .attr("role","alert")
+      .attr("style","display:none");
+
     // Create SVG element
-    var svg = d3.select($wrapper[0])
-      .append("svg");
+    var svg = wrapper
+      .append("svg")
+      .attr("tabindex",0)
+      .attr("aria-label", "Bar chart two");
 
     // Create x axis
     var xAxisG = svg.append("g")
-      .attr("class", "x-axis");
+      .attr("class", "x-axis")
+      .attr("role","list");
 
     /**
      * @private
@@ -46,12 +68,19 @@ H5P.Chart.BarChart = (function () {
     var key = function (d) {
       return dataSet.indexOf(d);
     };
+    // Create labels
+    var time = new Date().getTime();
+
 
     // Create rectangles for bars
+
     var rects = svg.selectAll("rect")
       .data(dataSet, key)
       .enter()
       .append("rect")
+      //.attr("aria-labelledby", function(d,i){return time + key(d);})
+      .attr("tabindex", 0)
+      .attr("role","listitem")
       .attr("fill", function(d) {
         if (d.color !== undefined) {
           return '#' + d.color;
@@ -59,22 +88,16 @@ H5P.Chart.BarChart = (function () {
         return defColors(dataSet.indexOf(d) % 7);
       });
 
-    // Create labels
-    var texts = svg.selectAll("text")
-      .data(dataSet, key)
-      .enter()
-      .append("text")
-      .text(function(d) {
-        return d.value;
-      })
-      .attr("text-anchor", "middle")
-      .attr("fill", function (d) {
-        if (d.fontColor !== undefined) {
-          return '#' + d.fontColor;
-        }
-        return '#000000';
-      });
-
+      var texts = rects.append("svg:text")
+        .attr("class", "text")
+        .attr("text-anchor", "middle")
+        .text(function(d, i) { return dataSet[i].value + ": " + dataSet[i].text; })
+        .attr("fill", function (d) {
+          if (d.fontColor !== undefined) {
+            return '#' + d.fontColor;
+          }
+          return '#000000';
+        });
     /**
      * Fit the current bar chart to the size of the wrapper.
      */

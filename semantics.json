@@ -57,5 +57,13 @@
         }
       ]
     }
+  },
+  {
+    "label": "Description",
+    "name": "description",
+    "type": "text",
+    "widget": "textarea",
+    "default": "Chart description",
+    "description": "Add the description of the chart."
   }
 ]
