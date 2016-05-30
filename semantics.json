@@ -44,7 +44,7 @@
           "type": "text",
           "widget": "colorSelector",
           "label": "Color",
-          "default": "000",
+          "default": "red",
           "optional": true
         },
         {
