@@ -72,7 +72,8 @@ H5P.Chart.BarChart = (function () {
         if (d.fontColor !== undefined) {
           return '#' + d.fontColor;
         }
-        return '#000000';
+        // Set default color as black
+        return '#00000';
       });
 
     /**
@@ -82,13 +83,13 @@ H5P.Chart.BarChart = (function () {
       // Always scale to available space
       var style = window.getComputedStyle($wrapper[0]);
       var width = parseFloat(style.width);
-      var h = parseFloat(style.height);
+      var h = parseFloat(style.height)-20;
       var fontSize = parseFloat(style.fontSize);
       var lineHeight = (1.25 * fontSize);
       var tickSize = (fontSize * 0.125);
       var height = h - tickSize - lineHeight; // Add space for labels below
 
-      // Update SVG size
+      // Update  size
       svg.attr("width", width)
         .attr("height", h);
 
@@ -120,7 +121,7 @@ H5P.Chart.BarChart = (function () {
           return xScale(i) + xScale.rangeBand() / 2;
         })
         .attr("y", function(d) {
-          return height - yScale(d.value) + lineHeight;
+          return height - yScale(d.value) + lineHeight - 20;
         });
     };
   }

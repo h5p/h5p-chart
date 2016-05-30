@@ -52,7 +52,7 @@
           "type": "text",
           "widget": "colorSelector",
           "label": "Font Color",
-          "default": "fff",
+          "default": "000",
           "optional": true
         }
       ]
