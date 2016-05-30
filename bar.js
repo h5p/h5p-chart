@@ -73,7 +73,7 @@ H5P.Chart.BarChart = (function () {
           return '#' + d.fontColor;
         }
         // Set default color as black
-        return '#00000';
+        return '#000000';
       });
 
     /**
@@ -89,7 +89,7 @@ H5P.Chart.BarChart = (function () {
       var tickSize = (fontSize * 0.125);
       var height = h - tickSize - lineHeight; // Add space for labels below
 
-      // Update  size
+      // Update SVG size
       svg.attr("width", width)
         .attr("height", h);
 
