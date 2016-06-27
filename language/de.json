@@ -21,17 +21,18 @@
             "label": "Name"
           },
           {
-            "label": "Wert",
+            "label": "Wert"
           },
           {
-            "label": "Farbe",
+            "label": "Farbe"
 
           },
           {
-            "label": "Schriftfarbe",
+            "label": "Schriftfarbe"
 
           }
         ]
       }
     }
   ]
+}
