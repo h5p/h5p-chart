@@ -1,6 +1,7 @@
 .h5p-chart svg {
   display: block;
   margin: 0 auto;
+  padding-top: 20px;
 }
 .h5p-chart-chart {
   font-size: 0.75em;
