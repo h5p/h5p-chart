@@ -7,18 +7,37 @@ H5P.Chart.PieChart = (function () {
    * @param {array} dataSet
    * @param {H5P.jQuery} $wrapper
    */
-  function PieChart(dataSet, $wrapper) {
+  function PieChart(dataSet, $wrapper, description) {
     var self = this;
 
     var defColors = d3.scale.ordinal()
       .range(["#90EE90", "#ADD8E6", "#FFB6C1", "#B0C4DE", "#D3D3D3", "#20B2AA", "#FAFAD2"]);
 
+    var wrapper = d3.select($wrapper[0]);
+
+    // Create the description link and text of the chart
+    var descriptionLink = wrapper
+      .append("a")
+      .attr("href","javascript:void(0)")
+      .text("Click here to show text description of your chart")
+      .on("click",function(event){
+        H5P.jQuery(this)
+        .next()
+        .slideToggle();
+      });
+    var descriptionText = wrapper
+      .append("div")
+      .text(description)
+      .attr("role","alert")
+      .attr("style","display:none");
+
     // Create SVG
-    var svg = d3.select($wrapper[0])
-      .append("svg");
+    var svg = wrapper
+      .append("svg")
+      .attr("aria-label", "Pie Chart: MyTitle");
 
     var translater = svg.append("g")
-      .attr("class", "translater");
+      .attr({"class": "translater", "role":"list"});
 
     var pie = d3.layout.pie()
       .sort(null)
@@ -28,7 +47,7 @@ H5P.Chart.PieChart = (function () {
     var arcs = translater.selectAll(".arc")
       .data(pie(dataSet))
       .enter().append("g")
-      .attr("class", "arc");
+      .attr({"class": "arc", "role": "listitem", "tabindex":0});
 
     var paths = arcs.append("path")
       .style("fill", function(d) {
