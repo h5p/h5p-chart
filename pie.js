@@ -33,7 +33,7 @@ H5P.Chart.PieChart = (function () {
     var paths = arcs.append("path")
       .style("fill", function(d) {
         if (d.data.color !== undefined) {
-          return "#" + d.data.color;
+          return d.data.color;
         }
         return defColors(dataSet.indexOf(d.data) % 7);
       });
@@ -44,7 +44,7 @@ H5P.Chart.PieChart = (function () {
       .text(function(d, i) { return dataSet[i].value + ': ' + dataSet[i].text; })
       .attr("fill", function (d) {
         if (d.data.fontColor !== undefined) {
-          return '#' + d.data.fontColor;
+          return d.data.fontColor;
         }
       });
 

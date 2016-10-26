@@ -54,7 +54,7 @@ H5P.Chart.BarChart = (function () {
       .append("rect")
       .attr("fill", function(d) {
         if (d.color !== undefined) {
-          return '#' + d.color;
+          return d.color;
         }
         return defColors(dataSet.indexOf(d) % 7);
       });
@@ -70,9 +70,9 @@ H5P.Chart.BarChart = (function () {
       .attr("text-anchor", "middle")
       .attr("fill", function (d) {
         if (d.fontColor !== undefined) {
-          return '#' + d.fontColor;
+          return d.fontColor;
         }
-        return '#000000';
+        return '000000';
       });
 
     /**
