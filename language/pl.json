@@ -1,0 +1,39 @@
+{
+  "semantics":[
+    {
+      "label":"Type of chart",
+      "options":[
+        {
+          "label":"Pie Chart"
+        },
+        {
+          "label":"Bar Chart"
+        }
+      ],
+      "default":"pieChart"
+    },
+    {
+      "label":"Data elements",
+      "entity":"option",
+      "field":{
+        "label":"Data element",
+        "fields":[
+          {
+            "label":"Name"
+          },
+          {
+            "label":"Value"
+          },
+          {
+            "label":"Color",
+            "default":"#000"
+          },
+          {
+            "label":"Font Color",
+            "default":"#fff"
+          }
+        ]
+      }
+    }
+  ]
+}
