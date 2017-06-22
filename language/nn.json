@@ -1,33 +1,36 @@
 {
-  "semantics": [
+  "semantics":[
     {
-      "label": "Diagramtype",
-      "options": [
+      "label":"Type of chart",
+      "options":[
         {
-          "label": "Kakediagram"
+          "label":"Pie Chart"
         },
         {
-          "label": "Søylediagram"
+          "label":"Bar Chart"
         }
-      ]
+      ],
+      "default":"pieChart"
     },
     {
-      "label": "Verdiar",
-      "entity": "verdi",
-      "field": {
-        "label": "Verdi",
-        "fields": [
+      "label":"Data elements",
+      "entity":"option",
+      "field":{
+        "label":"Data element",
+        "fields":[
           {
-            "label": "Namn"
+            "label":"Name"
           },
           {
-            "label": "Verdi"
+            "label":"Value"
           },
           {
-            "label": "Bakgrunnsfarge"
+            "label":"Color",
+            "default":"#000"
           },
           {
-            "label": "Tekstfarge"
+            "label":"Font Color",
+            "default":"#fff"
           }
         ]
       }
