@@ -1,33 +1,36 @@
 {
-  "semantics": [
+  "semantics":[
     {
-      "label": "Grafikon",
-      "options": [
+      "label":"Type of chart",
+      "options":[
         {
-          "label": "Pita-grafikon"
+          "label":"Pie Chart"
         },
         {
-          "label": "Stupčaski grafikon"
+          "label":"Bar Chart"
         }
-      ]
+      ],
+      "default":"pieChart"
     },
     {
-      "label": "Vrijednosti",
-      "entity": "vrijednost",
-      "field": {
-        "label": "Vrijednost",
-        "fields": [
+      "label":"Data elements",
+      "entity":"option",
+      "field":{
+        "label":"Data element",
+        "fields":[
           {
-            "label": "Naziv"
+            "label":"Name"
           },
           {
-            "label": "Vrijednost"
+            "label":"Value"
           },
           {
-            "label": "Boja pozadine"
+            "label":"Color",
+            "default":"#000"
           },
           {
-            "label": "Boja teksta"
+            "label":"Font Color",
+            "default":"#fff"
           }
         ]
       }
