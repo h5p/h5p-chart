@@ -4,7 +4,7 @@
       "label": "Tipo de gráfico",
       "options": [
         {
-          "label": "Gráfico de pizza"
+          "label": "Gráfico circular"
         },
         {
           "label": "Gráfico de barras"
@@ -12,10 +12,10 @@
       ]
     },
     {
-      "label": "Dados",
-      "entity": "option",
+      "label": "Elementos de dados",
+      "entity": "opção",
       "field": {
-        "label": "Dados",
+        "label": "Elemento de dados",
         "fields": [
           {
             "label": "Nome"
@@ -27,13 +27,13 @@
             "label": "Cor"
           },
           {
-            "label": "Cor da fonte"
+            "label": "Cor do tipo de letra"
           }
         ]
       }
     },
     {
-      "label": "Texto lido por leitores de tela definindo a figura como um gráfico.",
+      "label": "Texto lido por leitores de ecrã definindo a figura como um gráfico.",
       "default": "Gráfico"
     }
   ]
