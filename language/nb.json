@@ -7,9 +7,34 @@
           "label":"Kakediagram"
         },
         {
-          "label":"Søylediagram"
+          "label": "Søylediagram"
+        },
+        {
+          "value": "extendedBarChart",
+          "label": "Utvidet søylediagram"
         }
       ]
+    },
+    {
+      "name": "chartText",
+      "type": "text",
+      "label": "Graftittel",
+      "description" : "Tittelen på grafen, blir lagt til i toppen.",
+      "optional": true
+    },
+    {
+      "name": "xAxisText",
+      "type": "text",
+      "label": "X aksetittel",
+      "description" : "En tittel i bunnen av grafen til å beskrive X aksen.",
+      "optional": true
+    },
+    {
+      "name": "yAxisText",
+      "type": "text",
+      "label": "Y aksetittel",
+      "description" : "En tittel til venstre av grafen til å beskrive Y aksen.",
+      "optional": true
     },
     {
       "label":"Verdier",
