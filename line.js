@@ -1,20 +1,19 @@
 /*global d3*/
-H5P.Chart.ExtendedBarChart = (function () {
+H5P.Chart.LineChart = (function () {
 
   /**
    * Creates a bar chart from the given data set.
    *
-   * Notice: ExtendedBar uses its own listOfTypes in h5p-chart/semantics.json, its differentiated through the use of "showWhen"-widget
+   * Notice: LineChart uses its own listOfTypes in h5p-chart/semantics.json, its differentiated through the use of "showWhen"-widget
    * @class
    * @param {Object} params from semantics, contains data set
    * @param {H5P.jQuery} $wrapper
    */
-  function extendedBarChart(params, $wrapper) {
+  function LineChart(params, $wrapper) {
     var self = this;
     var dataSet = params.listOfTypes;
     var defColors = d3.scale.ordinal()
         .range(['#fbb033', '#2f2f2f', '#FFB6C1', '#B0C4DE', '#D3D3D3', '#20B2AA', '#FAFAD2']);
-
     //Lets check if the axes titles are defined, used for setting correct offset for title space in the generated svg
     var chartTextDefined = !!params.chartText;
     var isXAxisTextDefined = !!params.xAxisText;
@@ -23,7 +22,6 @@ H5P.Chart.ExtendedBarChart = (function () {
     // Create scales for bars
     var xScale = d3.scale.ordinal()
         .domain(d3.range(dataSet.length));
-
     var yScale = d3.scale.linear()
         .domain([0, d3.max(dataSet, function (d) {
           return d.value ;
@@ -52,7 +50,7 @@ H5P.Chart.ExtendedBarChart = (function () {
         .attr('class', 'x-axis');
 
     var yAxisG = svg.append('g')
-        .attr('class', 'y-axis')
+        .attr('class', 'y-axis');
 
     /**
      * @private
@@ -60,20 +58,6 @@ H5P.Chart.ExtendedBarChart = (function () {
     var key = function (d) {
       return dataSet.indexOf(d);
     };
-    // Create rectangles for bars
-    var rects = svg.selectAll('rect')
-        .data(dataSet, key)
-        .enter()
-        .append('rect')
-        .attr('fill', function(d) {
-          if(params.overrideColorGroup && params.overrideColorGroup.overrideChartColorsTick ){
-            return params.overrideColorGroup.overrideChartColor;
-          }
-          if (d.color !== undefined) {
-            return d.color;
-          }
-          return defColors(dataSet.indexOf(d) % 7);
-        });
 
     var chartText = svg.append('text')
         .style('text-anchor', 'middle')
@@ -93,30 +77,48 @@ H5P.Chart.ExtendedBarChart = (function () {
         .data(dataSet, key)
         .enter();
 
-    // Create inner rect labels
-    var texts = svg.selectAll('text')
+    var g = svg.append("g"); //Used for creating a container for the
+    var path =  g.selectAll("path")
+        .data([dataSet])
+        .enter()
+        .append("path");
+    var dots = g.selectAll("circle")
         .data(dataSet, key)
         .enter()
-        .append('text')
-        .text(function(d) {
-          return d.value;
+        .append("circle")
+        .attr("r", 5)
+        .style("fill", params.lineColorGroup)
+        .on("mouseover", function(d, i) { // Expands the dot the mouse is hovering and appends a text with
+          d3.select(this).transition().duration(200)
+              .attr("r", 7);
+
+          g.append("text")
+              .attr("x", function() { return xScale(i) - 2;})
+              .attr("y", function() { return yScale(d.value) - 20;})
+
+              .text(function() { return d.value;})
+              .attr("class", "text-node");
         })
-        .attr('text-anchor', 'middle')
-        .attr('fill', function (d) {
-          if(params.overrideColorGroup && params.overrideColorGroup.overrideChartColorsTick ){
-            return params.overrideColorGroup.overrideChartColorText;
-          }
-          if (d.fontColor !== undefined) {
-            return d.fontColor;
-          }
-          return '000000';
-        })
-        .attr('aria-hidden', true);
+        .on("mouseout", function(d) {
+              // Putting style back to default values
+              d3.select(this).transition().duration(200)
+                  .attr("r", 5)
+                  .style("font-size", 12);
+
+              // Deleting extra elements
+              d3.select(".text-node").remove();
+            }
+        );
+
+
+
+    var line = d3.svg.line();
 
     /**
      * Fit the current bar chart to the size of the wrapper.
      */
     self.resize = function () {
+
       // Always scale to available space
       var style = window.getComputedStyle($wrapper[0]);
       var width = parseFloat(style.width);
@@ -132,10 +134,10 @@ H5P.Chart.ExtendedBarChart = (function () {
       if(isXAxisTextDefined) {
         height = h - xTickSize - (lineHeight * 2) - (chartTextDefined ? chartTitleTextOffset : 0);
       }
-
       // Update SVG size
       svg.attr('width', width)
           .attr('height', h);
+
 
       // Update scales
       xScale.rangeRoundBands([0, width - xAxisRectOffset], 0.05); //In order for the X scale to NOT overlap Y axis ticks, we define and offset, making the X scale start further away from the svg wrapper edge
@@ -143,6 +145,7 @@ H5P.Chart.ExtendedBarChart = (function () {
 
       x.range([0, width]);
       y.range([height, 0]);
+
       xAxis.tickSize([0]);
       xAxisG.attr('transform', 'translate(0,0)').call(xAxis);
       //A lot of conditional moving here. If Y axis text is defined, we translate 40 px in the X direction. In the Y direction we translate downward the by current chartTitle height and line height
@@ -157,22 +160,6 @@ H5P.Chart.ExtendedBarChart = (function () {
       var yAxisTicksText = yAxisG.selectAll('g.tick text')[0];
       //Gets width of last Y Axis tick text element
       var yAxisLastTickWidth = yAxisTicksText[yAxisTicksText.length-1].getBoundingClientRect().width;
-
-      // Move rectangles (bars)
-      rects.attr('x', function(d, i) {
-        //if Y Axis title is defined lets make space for Y Axis title by adding the lineheight times 2, to each bar position, and the width of the last, and presumably longest, tick text width
-        if(isYAxisTextDefined) {
-          return xScale(i) + xAxisRectOffset + yAxisLastTickWidth;
-        } else {
-          return xScale(i) + lineHeight + yAxisLastTickWidth;
-        }
-      }).attr('y', function(d) {
-        //If chart text is defined, add the height of the svg chart text and the lineheight to offsett the rects on the y
-        return chartTextDefined ? yScale(d.value) + chartTitleTextOffset : yScale(d.value);
-      }).attr('width', xScale.rangeBand())
-          .attr('height', function(d) {
-            return height - yScale(d.value) ;
-          });
 
       //Sets the axes titles on resize
       chartText
@@ -205,18 +192,24 @@ H5P.Chart.ExtendedBarChart = (function () {
       });
 
 
-      // Re-locate text value labels
-      texts.attr('x', function(d, i) {
-        if(isYAxisTextDefined) {
-          //Offset a bt more if the Y Axis text is defined
-          return xScale(i) + xScale.rangeBand() / 2 + xAxisRectOffset + yAxisLastTickWidth;}
-        else {
-          return xScale(i) + xScale.rangeBand() / 2  + lineHeight + yAxisLastTickWidth;
-        }
-      }).attr('y', function(d) {
-        //Add more room with a ternary if chart text is defined
-        return height - lineHeight + (chartTextDefined ? chartTitleTextOffset : 0);
-      });
+      var firstXaxisTick = xAxisG.select('.tick');
+      var firstXaxisTickXPos = d3.transform(firstXaxisTick.attr("transform")).translate[0];
+      var firstXaxisTickWidth = firstXaxisTick[0][0].getBoundingClientRect().width;
+      g.attr('transform', 'translate(' + (firstXaxisTickXPos - firstXaxisTickWidth )+ ',' + (chartTextDefined ? chartTitleTextOffset : 0) + ')');
+
+      //Apply line positions after the scales have changed on resize
+      line.x(function(d,i) {return xScale(i);})
+          .y(function(d) { return yScale(d.value); });
+
+      //apply lines after resize
+      path.attr("class", "line-path")
+          .attr("d", line)
+          .style("stroke", params.lineColorGroup);
+
+      //Move dots according to scale
+      dots.attr("cx", function(d,i) { return xScale(i);})
+          .attr("cy", function(d) { return yScale(d.value); });
+
 
       // Hide ticks from screen readers, the entire rectangle is already labelled
       xAxisG.selectAll('text').attr('aria-hidden', true);
@@ -251,5 +244,5 @@ H5P.Chart.ExtendedBarChart = (function () {
 
   }
 
-  return extendedBarChart;
+  return LineChart;
 })();
