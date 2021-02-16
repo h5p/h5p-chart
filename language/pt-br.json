@@ -8,6 +8,12 @@
         },
         {
           "label": "Gráfico de barras"
+        },
+        {
+          "label": "Gráfico de barras aumentado"
+        },
+        {
+          "label": "Gráfico de linha"
         }
       ]
     },
