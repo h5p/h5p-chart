@@ -18,106 +18,80 @@
       ]
     },
     {
-      "name": "chartText",
-      "type": "text",
-      "label": "Graftittel",
-      "description" : "Tittelen på grafen, blir lagt til i toppen.",
-      "optional": true
-    },
-    {
-      "name": "xAxisText",
-      "type": "text",
-      "label": "X aksetittel",
-      "description" : "En tittel i bunnen av grafen til å beskrive X aksen.",
-      "optional": true
-    },
-    {
-      "name": "yAxisText",
-      "type": "text",
-      "label": "Y aksetittel",
-      "description" : "En tittel til venstre av grafen til å beskrive Y aksen.",
-      "optional": true
-    },
-    {
-      "name": "overrideColorGroup",
-      "type": "group",
-      "label": "Overstyr farger",
-      "widget": "showWhen",
-      "showWhen": {
-        "rules" : [
+      "label": "Verdier",
+      "entity": "option",
+      "field": {
+        "label": "Verdi",
+        "fields": [
           {
-            "field": "graphMode",
-            "equals" : [
-              "extendedBarChart"
-            ]
-          }
-        ]
-      },
-      "fields": [
-        {
-          "name": "overrideChartColorsTick",
-          "type": "boolean",
-          "label": "Overstyr diagramfarge",
-          "description": "Kryss av for å overstyre fargene i diagrammet",
-          "importance": "low",
-          "default": false
-        },
-        {
-          "name": "overrideChartColor",
-          "type": "text",
-          "widget": "colorSelector",
-          "label": "Overstyringsfarge for søyler",
-          "description": "Overstyrer søylefargene med valgt farge",
-          "importance": "low",
-          "default": "#000",
-
-          "optional": true,
-          "spectrum": {
-            "showInput": true,
-            "preferredFormat": "hex"
-          }
-        },
-        {
-          "name": "overrideChartColorText",
-          "type": "text",
-          "widget": "colorSelector",
-          "label": "Overstyringsfarge for tekst i søyler",
-          "description": "Overstyrer fargen i teksten inni søylene",
-          "importance": "low",
-          "default": "#fff",
-
-          "optional": true,
-          "spectrum": {
-            "showInput": true,
-            "preferredFormat": "hex"
-          }
-        }
-      ]
-    },
-    {
-      "label":"Verdier",
-      "entity":"verdi",
-      "field":{
-        "label":"Verdi",
-        "fields":[
-          {
-            "label":"Navn"
+            "label": "Navn"
           },
           {
-            "label":"Verdi"
+            "label": "Verdi"
           },
           {
-            "label":"Bakgrunnsfarge"
+            "label": "Farge"
           },
           {
-            "label":"Tekstfarge"
+            "label": "Tekstfarge"
           }
         ]
       }
     },
     {
-      "label": "Tekst lest av readspeakers (som definerer figuren som et diagram).",
+      "label": "Tekst lest av screen readers (som definerer figuren som et diagram).",
       "default": "Diagram"
+    },
+    {
+      "label": "Graftittel",
+      "description" : "Tittelen på grafen, blir lagt til i toppen."
+    },
+    {
+      "label": "X aksetittel",
+      "description" : "En tittel i bunnen av grafen til å beskrive X aksen."
+    },
+    {
+      "label": "Y aksetittel",
+      "description" : "En tittel til venstre av grafen til å beskrive Y aksen."
+    },
+    {
+      "label": "Overstyr farger",
+      "fields": [
+        {
+          "label": "Overstyr diagramfarge",
+          "description": "Kryss av for å overstyre fargene i diagrammet"
+        },
+        {
+          "label": "Overstyringsfarge for søyler",
+          "description": "Overstyrer søylefargene med valgt farge"
+        },
+        {
+          "label": "Overstyringsfarge for tekst i søyler",
+          "description": "Overstyrer fargen i teksten inni søylene"
+        }
+      ]
+    },
+    {
+      "label": "Farge på linje",
+      "fields": [
+        {
+          "label": "Fargen på linjen i linjediagrammet"
+        }
+      ]
+    },
+    {
+      "label": "Verdier",
+      "field": {
+        "label": "Verdi",
+        "fields": [
+          {
+            "label": "X Verdi"
+          },
+          {
+            "label": "Y Verdi"
+          }
+        ]
+      }
     }
   ]
 }
