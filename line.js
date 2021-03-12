@@ -105,7 +105,6 @@ H5P.Chart.LineChart = (function () {
           if(d3.event.keyCode === 9 && isShowingTooltip ){
             onCircleExit(this);
           }
-
           if(d3.event.keyCode === 9 && !isShowingTooltip){
             onCircleEnter(d,i, this);
           }
@@ -121,7 +120,6 @@ H5P.Chart.LineChart = (function () {
           {
             onCircleEnter(d,i, this);
           }
-
         })
 
         .on("mouseout", function(d) { // Animates exit animation for hover exit
@@ -182,10 +180,10 @@ H5P.Chart.LineChart = (function () {
      * Fit the current bar chart to the size of the wrapper.
      */
     self.resize = function () {
-
       // Always scale to available space
       var style = window.getComputedStyle($wrapper[0]);
-      var width = parseFloat(style.width);
+      var horizontalPadding = parseFloat(style.width) / 16;
+      var width = parseFloat(style.width) - horizontalPadding ;
       var h = parseFloat(style.height);
       var fontSize = parseFloat(style.fontSize);
       var lineHeight = (1.25 * fontSize);
@@ -200,7 +198,7 @@ H5P.Chart.LineChart = (function () {
         height = h - xTickSize - (lineHeight * 4) - chartTitleTextOffset;
       }
       // Update SVG size
-      svg.attr('width', width)
+      svg.attr('width', width + horizontalPadding)
           .attr('height', h);
 
 
@@ -224,7 +222,7 @@ H5P.Chart.LineChart = (function () {
       var yAxisLastTickWidth = yAxisTicksText[yAxisTicksText.length-1].getBoundingClientRect().width;
 
       var minYAxisGMargin = 20;
-      const xTranslation = (isYAxisTextDefined ? yAxisLastTickWidth  + minYAxisGMargin : yAxisLastTickWidth * 2 );
+      const xTranslation = (isYAxisTextDefined ? yAxisLastTickWidth  + minYAxisGMargin : yAxisLastTickWidth + lineHeight );
       const yTranslation = chartTitleTextOffset;
 
       xAxisG.attr('transform', `translate(${xTranslation + minYAxisGMargin}, ${lineHeight/2})`);
@@ -252,11 +250,7 @@ H5P.Chart.LineChart = (function () {
 
       });
 
-      //Needs to be here, because it's now been placed at its final position
-      var firstXaxisTickXPos = d3.transform(firstXaxisTick.attr("transform")).translate[0];
-
-
-      var lineXPos = firstXaxisTickXPos + firstXaxisTickWidth
+      var lineXPos = xTranslation + minYAxisGMargin;
       lineGroup.attr('transform', 'translate(' + lineXPos + ',' + chartTitleTextOffset + ')');
 
       //Apply line positions after the scales have changed on resize
