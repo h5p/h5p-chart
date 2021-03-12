@@ -3,7 +3,7 @@
   "description": "Create different charts",
   "majorVersion": 1,
   "minorVersion": 2,
-  "patchVersion": 20,
+  "patchVersion": 21,
   "runnable": 1,
   "author": "Joubel",
   "license": "MIT",
@@ -45,6 +45,9 @@
       "machineName": "H5PEditor.ColorSelector",
       "majorVersion": 1,
       "minorVersion": 2
-    }
+    },
+    { "machineName": "H5PEditor.ShowWhen",
+      "majorVersion": 1,
+      "minorVersion": 0 }
   ]
 }
