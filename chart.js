@@ -82,7 +82,7 @@ H5P.Chart = (function ($, EventDispatcher) {
         continue;
       }
 
-      row.text = row.text.trim();
+      row.text = this.htmlDecode(row.text.trim());
       row.value = parseFloat(row.value);
       if (row.text === '' || isNaN(row.value)) {
         // Remove invalid data
@@ -92,6 +92,19 @@ H5P.Chart = (function ($, EventDispatcher) {
       }
     }
   };
+
+  /**
+   * Retrieve true string from HTML encoded string.
+   * @param {string} input Input string.
+   * @return {string} Output string.
+   */
+  Chart.htmlDecode = function (input) {
+    const dparser = new DOMParser().parseFromString(input, 'text/html');
+    const div = document.createElement('div');
+    div.innerHTML = dparser.documentElement.textContent;
+
+    return div.textContent || div.innerText || '';
+  }
 
   /**
    * Append field to wrapper.
