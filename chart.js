@@ -34,8 +34,8 @@ H5P.Chart = (function ($, EventDispatcher) {
       self.params.listOfTypes = [
         {
           text: 'Cat',
-          value: 1,
-          color: '#D3D3D3',
+          value: 4,
+          color: '#fbb033',
           fontColor: '#000'
         },
         {
@@ -53,15 +53,33 @@ H5P.Chart = (function ($, EventDispatcher) {
       ];
     }
 
-    // Set the figure definition for readspeakers if it doesn't exist
+    // Set the figure definition for screen readers if it doesn't exist
     if (!self.params.figureDefinition) {
       self.params.figureDefinition = "Chart";
     }
 
     // Keep track of type.
-    self.type = (self.params.graphMode === 'pieChart' ? 'Pie' : 'Bar');
+    self.type = getChartType(self.params.graphMode);
   }
 
+  function getChartType(graphMode) {
+    switch (graphMode) {
+      case 'pieChart':
+        return 'Pie';
+
+      case 'barChart':
+        return 'Bar';
+
+      case 'extendedBarChart':
+        return 'ExtendedBar';
+
+      case 'lineChart':
+        return 'Line';
+
+      default:
+        return 'Pie';
+    }
+  }
   // Inheritance
   Chart.prototype = Object.create(EventDispatcher.prototype);
   Chart.prototype.constructor = Chart;
@@ -119,7 +137,7 @@ H5P.Chart = (function ($, EventDispatcher) {
     });
 
     // Add aria-labels for the data
-    self.params.listOfTypes.forEach(function(type) {
+    self.params.listOfTypes.forEach(function (type) {
       var ariaLabel = $('<div/>', {
         'class': 'hidden-but-read',
         'html': type.text + ': ' + type.value + ''

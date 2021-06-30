@@ -7,34 +7,91 @@
           "label":"Kakediagram"
         },
         {
-          "label":"Søylediagram"
+          "label": "Søylediagram"
+        },
+        {
+          "label": "Utvida søylediagram"
+        },
+        {
+          "label": "Linjediagram"
         }
       ]
     },
     {
-      "label":"Verdiar",
-      "entity":"verdi",
-      "field":{
-        "label":"Verdi",
-        "fields":[
+      "label": "Verdiar",
+      "entity": "option",
+      "field": {
+        "label": "Verdi",
+        "fields": [
           {
-            "label":"Namn"
+            "label": "Navn"
           },
           {
-            "label":"Verdi"
+            "label": "Verdi"
           },
           {
-            "label":"Bakgrunnsfarge"
+            "label": "Farge"
           },
           {
-            "label":"Tekstfarge"
+            "label": "Tekstfarge"
           }
         ]
       }
     },
     {
-      "label": "Text read by readspeakers defining the figure as a chart.",
+      "label": "Tekst lest av screen readers (som definerer figuren som eit diagram).",
       "default": "Diagram"
+    },
+    {
+      "label": "Graftittel",
+      "description" : "Tittelen på grafen, blir lagt til i toppen."
+    },
+    {
+      "label": "X aksetittel",
+      "description" : "Ein tittel i bunnen av grafen til å beskrive X aksen."
+    },
+    {
+      "label": "Y aksetittel",
+      "description" : "Ein tittel til venstre av grafen til å beskrive Y aksen."
+    },
+    {
+      "label": "Overstyr fargar",
+      "fields": [
+        {
+          "label": "Overstyr diagramfarge",
+          "description": "Kryss av for å overstyre fargane i diagrammet"
+        },
+        {
+          "label": "Overstyringsfarge for søyler",
+          "description": "Overstyrer søylefargane med valgt farge"
+        },
+        {
+          "label": "Overstyringsfarge for tekst i søyler",
+          "description": "Overstyrer fargen i teksten inni søylene"
+        }
+      ]
+    },
+    {
+      "label": "Farge på linje",
+      "fields": [
+        {
+          "label": "Fargen på linjen i linjediagrammet"
+        }
+      ]
+    },
+    {
+      "label": "Verdiar",
+      "field": {
+        "label": "Verdi",
+        "fields": [
+          {
+            "label": "X Verdi"
+          },
+          {
+            "label": "Y Verdi"
+          }
+        ]
+      }
     }
   ]
 }

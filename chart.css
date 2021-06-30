@@ -1,9 +1,10 @@
 .h5p-chart svg {
   display: block;
   margin: 0 auto;
-}
-.h5p-chart-chart {
-  font-size: 0.75em;
+  font-size: 12px;
+  font-size: min(16px, 0.9em);
+  width: 100%;
+  height: 100%;
 }
 .h5p-chart-bar {
   width: 100%;
@@ -30,4 +31,45 @@
   width:1px;
   height:1px;
   overflow:hidden;
+}
+
+.h5p-chart .text-rect {
+  fill: black;
+  opacity: 0.7;
+}
+
+
+.h5p-chart circle:focus, .h5p-chart .bar:focus {
+  outline: dodgerblue 2px solid;
+}
+
+.h5p-chart .line-path {
+  fill: none;
+  stroke-width: 2px;
+}
+
+.h5p-chart .chart-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.h5p-chart .y-axis .tick line {
+  stroke: black;
+  opacity: 0.4;
+}
+
+.h5p-chart .axis-title {
+  font-size: 1.3em;;
+  font-weight: bold;
+}
+.h5p-chart text {
+  font-size: 1.1em;;
+}
+.h5p-chart .text-node {
+  fill: white;
+  font-size: 1.2em;
+  dominant-baseline: central;
+}
+.h5p-chart .y-axis path {
+  stroke-width: 0;
 }

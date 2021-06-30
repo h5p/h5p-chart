@@ -56,7 +56,7 @@ H5P.Chart.BarChart = (function () {
       .data(dataSet, key)
       .enter()
       .append("rect")
-      .attr("fill", function(d) {
+      .attr("fill", function (d) {
         if (d.color !== undefined) {
           return d.color;
         }
@@ -68,7 +68,7 @@ H5P.Chart.BarChart = (function () {
       .data(dataSet, key)
       .enter()
       .append("text")
-      .text(function(d) {
+      .text(function (d) {
         return d.value;
       })
       .attr("text-anchor", "middle")
@@ -94,8 +94,7 @@ H5P.Chart.BarChart = (function () {
       var height = h - tickSize - lineHeight; // Add space for labels below
 
       // Update SVG size
-      svg.attr("width", width)
-        .attr("height", h);
+      svg.attr('viewBox', `0 0 ${width} ${h}`);
 
       // Update scales
       xScale.rangeRoundBands([0, width], 0.05);
@@ -109,23 +108,23 @@ H5P.Chart.BarChart = (function () {
         .call(xAxis);
 
       // Move rectangles (bars)
-      rects.attr("x", function(d, i) {
+      rects.attr("x", function (d, i) {
         return xScale(i);
-      }).attr("y", function(d) {
+      }).attr("y", function (d) {
         return height - yScale(d.value);
       }).attr("width", xScale.rangeBand())
-        .attr("height", function(d) {
+        .attr("height", function (d) {
           return yScale(d.value);
         });
 
       // Re-locate text value labels
-      texts.attr("x", function(d, i) {
+      texts.attr("x", function (d, i) {
         return xScale(i) + xScale.rangeBand() / 2;
-      }).attr("y", function(d) {
+      }).attr("y", function (d) {
         return height - yScale(d.value) + lineHeight;
       });
 
-      // Hide ticks from readspeakers, the entire rectangle is already labelled
+      // Hide ticks from screen readers, the entire rectangle is already labelled
       xAxisG.selectAll("text").attr("aria-hidden", true);
     };
   }
