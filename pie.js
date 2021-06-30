@@ -26,7 +26,7 @@ H5P.Chart.PieChart = (function () {
 
     var pie = d3.layout.pie()
       .sort(null)
-      .value(function(d) {
+      .value(function (d) {
         return d.value;
       });
 
@@ -36,7 +36,7 @@ H5P.Chart.PieChart = (function () {
       .attr("class", "arc");
 
     var paths = arcs.append("path")
-      .style("fill", function(d) {
+      .style("fill", function (d) {
         if (d.data.color !== undefined) {
           return d.data.color;
         }
@@ -47,7 +47,7 @@ H5P.Chart.PieChart = (function () {
       .attr("class", "text")
       .attr("aria-hidden", true)
       .attr("text-anchor", "middle")
-      .text(function(d, i) {
+      .text(function (d, i) {
         return dataSet[i].text + ': ' + dataSet[i].value;
       })
       .attr("fill", function (d) {
@@ -77,7 +77,7 @@ H5P.Chart.PieChart = (function () {
       svg.attr('viewBox', `0 0 ${width} ${height}`);
       translater.attr("transform", "translate(" + (width / 2) + "," + (height / 2) + ")");
       paths.attr("d", arc);
-      texts.attr("transform", function(d) {
+      texts.attr("transform", function (d) {
         d.innerRadius = 0;
         d.outerRadius = radius - padding;
         return "translate(" + arc.centroid(d) + ")";

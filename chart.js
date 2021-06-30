@@ -73,7 +73,7 @@ H5P.Chart = (function ($, EventDispatcher) {
       case 'extendedBarChart':
         return 'ExtendedBar';
 
-        case 'lineChart':
+      case 'lineChart':
         return 'Line';
 
       default:
@@ -137,7 +137,7 @@ H5P.Chart = (function ($, EventDispatcher) {
     });
 
     // Add aria-labels for the data
-    self.params.listOfTypes.forEach(function(type) {
+    self.params.listOfTypes.forEach(function (type) {
       var ariaLabel = $('<div/>', {
         'class': 'hidden-but-read',
         'html': type.text + ': ' + type.value + ''
