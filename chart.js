@@ -5,7 +5,7 @@
  * @external {jQuery} $ H5P.jQuery
  * @external {EventDispatcher} EventDispatcher H5P.EventDispatcher
  */
-H5P.Chart = (function ($, EventDispatcher) {
+H5P.NDLAChart = (function ($, EventDispatcher) {
 
   /**
    * Initialize module.
