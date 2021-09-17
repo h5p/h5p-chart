@@ -1,6 +1,6 @@
 var H5PUpgrades = H5PUpgrades || {};
 
-H5PUpgrades['H5P.Chart'] = (function () {
+H5PUpgrades['H5P.NDLAChart'] = (function () {
   return {
     1: {
 
