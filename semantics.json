@@ -32,7 +32,7 @@
     "entity": "option",
     "min": 1,
     "defaultNum": 2,
-    "widget": "showWhen",
+    "widget": "NDLAShowWhen",
     "showWhen": {
       "rules" : [
         {
@@ -119,7 +119,7 @@
     "label": "Chart Title",
     "description" : "Adds a title on top of chart.",
     "optional": true,
-    "widget": "showWhen",
+    "widget": "NDLAShowWhen",
     "showWhen": {
       "rules" : [
         {
@@ -138,7 +138,7 @@
     "label": "X Axis Title",
     "description" : "A title in the bottom of the chart to describe the X axis.",
     "optional": true,
-    "widget": "showWhen",
+    "widget": "NDLAShowWhen",
     "showWhen": {
       "rules" : [
         {
@@ -157,7 +157,7 @@
     "label": "Y Axis Title",
     "description" : "A title on the left-hand side of the chart to describe the Y axis.",
     "optional": true,
-    "widget": "showWhen",
+    "widget": "NDLAShowWhen",
     "showWhen": {
       "rules" : [
         {
@@ -175,7 +175,7 @@
     "type": "group",
     "label": "Override color controls",
     "importance": "high",
-    "widget": "showWhen",
+    "widget": "NDLAShowWhen",
     "showWhen": {
       "rules" : [
         {
@@ -242,7 +242,7 @@
     "type": "group",
     "label": "Line color",
     "importance": "high",
-    "widget": "showWhen",
+    "widget": "NDLAShowWhen",
     "default": "#000000",
     "showWhen": {
       "rules" : [
@@ -285,7 +285,7 @@
     "entity": "option",
     "min": 1,
     "defaultNum": 2,
-    "widget": "showWhen",
+    "widget": "NDLAShowWhen",
     "showWhen": {
       "rules" : [
         {
