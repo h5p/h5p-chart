@@ -1,5 +1,5 @@
 /*global d3*/
-H5P.Chart.PieChart = (function () {
+H5P.NDLAChart.PieChart = (function () {
 
   /**
    * Creates a pie chart from the given data set.

@@ -1,5 +1,5 @@
 /*global d3*/
-H5P.Chart.BarChart = (function () {
+H5P.NDLAChart.BarChart = (function () {
 
   /**
    * Creates a bar chart from the given data set.
