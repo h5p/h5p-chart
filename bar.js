@@ -94,8 +94,7 @@ H5P.Chart.BarChart = (function () {
       var height = h - tickSize - lineHeight; // Add space for labels below
 
       // Update SVG size
-      svg.attr("width", width)
-        .attr("height", h);
+      svg.attr('viewBox', `0 0 ${width} ${h}`);
 
       // Update scales
       xScale.rangeRoundBands([0, width], 0.05);
@@ -125,7 +124,7 @@ H5P.Chart.BarChart = (function () {
         return height - yScale(d.value) + lineHeight;
       });
 
-      // Hide ticks from readspeakers, the entire rectangle is already labelled
+      // Hide ticks from screen readers, the entire rectangle is already labelled
       xAxisG.selectAll("text").attr("aria-hidden", true);
     };
   }
