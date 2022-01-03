@@ -27,13 +27,13 @@
             "label": "Kleur"
           },
           {
-            "label": "KLeur lettertype"
+            "label": "Kleur lettertype"
           }
         ]
       }
     },
     {
-      "label": "Tekst gelezen door readsprekers die het figuur als een grafiek definiëren.",
+      "label": "Tekst gelezen door schermlezers die het figuur als een grafiek definiëren.",
       "default": "Grafiek"
     }
   ]
