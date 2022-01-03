@@ -12,10 +12,10 @@
       ]
     },
     {
-      "label": "Elementos de dados",
+      "label": "Dados",
       "entity": "opção",
       "field": {
-        "label": "Elemento de dados",
+        "label": "Dados",
         "fields": [
           {
             "label": "Nome"
