@@ -1,7 +1,7 @@
 {
   "semantics": [
     {
-      "label": "Type of chart",
+      "label": "차트 종류",
       "options": [
         {
           "label": "파이 차트"
