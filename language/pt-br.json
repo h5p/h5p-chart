@@ -4,16 +4,16 @@
       "label": "Tipo de gráfico",
       "options": [
         {
-          "label": "Gráfico de pizza"
+          "label": "Gráfico de Pizza"
         },
         {
-          "label": "Gráfico de barras"
+          "label": "Gráfico de Barras"
         }
       ]
     },
     {
       "label": "Dados",
-      "entity": "option",
+      "entity": "opção",
       "field": {
         "label": "Dados",
         "fields": [
