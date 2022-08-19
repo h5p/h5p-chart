@@ -33,7 +33,7 @@
       }
     },
     {
-      "label": "Texto leído por Lectores de texto en voz alta definiendo la figura como un gráfico.",
+      "label": "Texto para lectores de pantalla definiendo la figura como un gráfico.",
       "default": "Gráfico"
     }
   ]
