@@ -1,7 +1,7 @@
 /*global d3*/
 
 
-H5P.Chart.LineChart = (function () {
+H5P.NDLAChart.LineChart = (function () {
 
   /**
    * Creates a line chart from the given data set.

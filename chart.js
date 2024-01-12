@@ -5,7 +5,7 @@
  * @external {jQuery} $ H5P.jQuery
  * @external {EventDispatcher} EventDispatcher H5P.EventDispatcher
  */
-H5P.Chart = (function ($, EventDispatcher) {
+H5P.NDLAChart = (function ($, EventDispatcher) {
 
   /**
    * Initialize module.
@@ -124,7 +124,7 @@ H5P.Chart = (function ($, EventDispatcher) {
       self.$wrapper = $('<div/>', {
         'class': 'h5p-chart-chart h5p-chart-' + self.type.toLowerCase()
       });
-      self.chart = new H5P.Chart[self.type + 'Chart'](self.params, self.$wrapper);
+      self.chart = new H5P.NDLAChart[self.type + 'Chart'](self.params, self.$wrapper);
     }
 
     // Prepare container
