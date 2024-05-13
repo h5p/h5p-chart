@@ -146,14 +146,15 @@ H5P.Chart = (function ($, EventDispatcher) {
       if (!self.$container.is(':visible')) {
         return; // Only handle if visible
       }
-      clearInterval(timer);
       // Resize existing chart
       self.chart.resize();
     });
-    let timer = setInterval(() => self.trigger('resize'), 100);
 
-    // Ensure we don't trigger resize indefinitely
-    setTimeout(() => clearInterval(timer), 1000);
+    let observer = new IntersectionObserver(() => {
+      self.trigger('resize');
+      observer.disconnect();
+    });
+    observer.observe(self.$container.get(0));
   };
 
   return Chart;
