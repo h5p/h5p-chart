@@ -1,40 +1,40 @@
 {
   "semantics": [
     {
-      "label": "Type of chart",
+      "label": "图表类型",
       "options": [
         {
-          "label": "Pie Chart"
+          "label": "饼状图"
         },
         {
-          "label": "Bar Chart"
+          "label": "柱状图"
         }
       ]
     },
     {
-      "label": "Data elements",
+      "label": "数据元素",
       "field": {
-        "label": "Data element",
+        "label": "数据元素",
         "fields": [
           {
-            "label": "Name"
+            "label": "名字"
           },
           {
-            "label": "Value"
+            "label": "值"
           },
           {
-            "label": "Color"
+            "label": "颜色"
           },
           {
-            "label": "Font Color"
+            "label": "字体颜色"
           }
         ]
       },
-      "entity": "option"
+      "entity": "选项"
     },
     {
-      "label": "Text read by readspeakers defining the figure as a chart.",
-      "default": "Chart"
+      "label": "由朗读器朗读的文本，将该图形定义为图表。",
+      "default": "图表"
     }
   ]
 }
