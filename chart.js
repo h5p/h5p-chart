@@ -123,7 +123,7 @@ H5P.Chart = (function ($, EventDispatcher) {
     }
 
     // Prepare container
-    self.$container = $container.html('').addClass('h5p-chart').append(self.$wrapper);
+    self.$container = $container.html('').addClass('h5p-chart h5p-theme').append(self.$wrapper);
 
     const $defgroup = $('<div/>', {
       'class': 'hidden-but-read',
