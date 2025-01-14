@@ -1,9 +1,13 @@
+
+
 .h5p-chart svg {
   display: block;
   margin: 0 auto;
 }
 .h5p-chart-chart {
   font-size: 0.75em;
+  background-color: var(--h5p-theme-ui-base);
+  fill: var(--h5p-theme-text-primary);
 }
 .h5p-chart-bar {
   width: 100%;
