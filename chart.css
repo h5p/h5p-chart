@@ -14,12 +14,12 @@
   height: 100%;
 }
 .h5p-chart-bar .domain {
-  fill: #fff;
-  stroke: #fff;
+  fill: var(--h5p-theme-ui-base);
+  stroke:var(--h5p-theme-ui-base);
   stroke-width: 0.125em;
 }
 .h5p-chart-pie path {
-  stroke: #fff;
+  stroke: var(--h5p-theme-ui-base);
   stroke-width: 0.125em;
 }
 
