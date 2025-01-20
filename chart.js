@@ -155,9 +155,9 @@ H5P.Chart = (function ($, EventDispatcher) {
 
     self.on('resize', function () {
       if (!self.$container.is(':visible')) {
-        return;
+        return; // Only handle if visible
       }
-      // Resize existing Chart
+      // Resize existing chart
       self.chart.resize();
     });
 
