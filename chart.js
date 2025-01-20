@@ -154,9 +154,11 @@ H5P.Chart = (function ($, EventDispatcher) {
     };
 
     self.on('resize', function () {
-      if (self.chart && typeof self.chart.resize === 'function') {
-        self.chart.resize();
+      if (!self.$container.is(':visible')) {
+        return;
       }
+      // Resize existing Chart
+      self.chart.resize();
     });
 
     self.trigger('resize');
