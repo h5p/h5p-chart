@@ -142,6 +142,17 @@ H5P.Chart = (function ($, EventDispatcher) {
     self.$container.append($defgroup);
 
     // Handle resizing
+    if (typeof ResizeObserver !== 'undefined') {
+      self.resizeObserver = new ResizeObserver(function(entries) {
+        for (let entry of entries) {
+          if (entry.target === self.$container.get(0)) {
+            self.trigger('resize');
+          }
+        }
+      });
+      self.resizeObserver.observe(self.$container.get(0));
+    };
+
     self.on('resize', function () {
       if (!self.$container.is(':visible')) {
         return; // Only handle if visible
@@ -149,6 +160,8 @@ H5P.Chart = (function ($, EventDispatcher) {
       // Resize existing chart
       self.chart.resize();
     });
+
+    self.trigger('resize');
   };
 
   return Chart;
