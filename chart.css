@@ -18,11 +18,6 @@
   stroke: #fff;
   stroke-width: 0.125em;
 }
-
-.h5p-standalone.h5p-chart .h5p-chart-chart {
-  height: 25em;
-}
-
 .h5p-chart .hidden-but-read {
   position:absolute;
   left:-10000px;
