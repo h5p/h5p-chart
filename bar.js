@@ -24,6 +24,9 @@ H5P.Chart.BarChart = (function () {
         return d.value;
       })]);
 
+    var x = d3.time.scale();
+    var y = d3.scale.linear();
+
     var xAxis = d3.svg.axis()
       .scale(xScale)
       .orient("bottom")
@@ -33,8 +36,7 @@ H5P.Chart.BarChart = (function () {
 
     // Create SVG element
     var svg = d3.select($wrapper[0])
-      .append("svg")
-      .attr("viewBox", "0 0 800 600")
+      .append("svg");
 
     svg.append("desc").html("chart");
 
@@ -92,13 +94,17 @@ H5P.Chart.BarChart = (function () {
       var height = h - tickSize - lineHeight; // Add space for labels below
 
       // Update SVG size
-      svg.attr("viewBox", "0 0 " + width + " " + h);
+      svg.attr("width", width)
+        .attr("height", h);
 
       // Update scales
       xScale.rangeRoundBands([0, width], 0.05);
       yScale.range([0, height]);
 
-      xAxis.tickSize(tickSize);
+      x.range([0, width]);
+      y.range([height, 0]);
+
+      xAxis.tickSize([tickSize]);
       xAxisG.attr("transform", "translate(0," + height + ")")
         .call(xAxis);
 
