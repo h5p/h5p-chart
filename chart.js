@@ -149,6 +149,12 @@ H5P.Chart = (function ($, EventDispatcher) {
       // Resize existing chart
       self.chart.resize();
     });
+
+    let observer = new IntersectionObserver(() => {
+      self.trigger('resize');
+      observer.disconnect();
+    });
+    observer.observe(self.$container.get(0));
   };
 
   return Chart;
