@@ -124,7 +124,7 @@ H5P.Chart.BarChart = (function () {
       });
 
       // 3) Recompute bottom margin with real size + buffer
-      var bottomMargin = Math.ceil(maxTickH + tickSize + 4);
+      var bottomMargin = Math.ceil(maxTickH + tickSize + extra);
       var newHeight = h - bottomMargin;
 
       var chartH = (newHeight !== height) ? newHeight : height;
