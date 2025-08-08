@@ -86,12 +86,13 @@ H5P.Chart.BarChart = (function () {
     self.resize = function () {
       // Always scale to available space
       var style = window.getComputedStyle($wrapper[0]);
-      var width = parseFloat(style.width);
-      var h = parseFloat(style.height);
-      var fontSize = parseFloat(style.fontSize);
-      var lineHeight = (1.25 * fontSize);
-      var tickSize = (fontSize * 0.125);
-      var height = h - tickSize - lineHeight; // Add space for labels below
+      const width = Math.round(parseFloat(style.width));
+      const h = Math.round(parseFloat(style.height));
+      const fontSize = Math.round(parseFloat(style.fontSize));
+      const lineHeight = Math.ceil(1.25 * fontSize);
+      const tickSize = Math.round(fontSize * 0.125);
+      const extra = 4; // tiny Safari buffer
+      const height = h - tickSize - lineHeight - extra; // Add space for labels below
 
       // Update SVG size
       svg.attr("width", width)
@@ -105,25 +106,50 @@ H5P.Chart.BarChart = (function () {
       y.range([height, 0]);
 
       xAxis.tickSize([tickSize]);
+      xAxis.tickPadding(Math.ceil(fontSize * 0.25));
+
+      // 1) First pass: quick guess
       xAxisG.attr("transform", "translate(0," + height + ")")
         .call(xAxis);
 
-      // Move rectangles (bars)
-      rects.attr("x", function(d, i) {
-        return xScale(i);
-      }).attr("y", function(d) {
-        return height - yScale(d.value);
-      }).attr("width", xScale.rangeBand())
-        .attr("height", function(d) {
-          return yScale(d.value);
-        });
+      xAxisG.selectAll(".tick text")
+        .style("font-size", fontSize + "px")
+        .attr("dy", "0.71em");
+
+      // 2) Measure tick label height
+      var maxTickH = 0;
+      xAxisG.selectAll(".tick text").each(function() {
+        var bb = this.getBBox ? this.getBBox() : null;
+        if (bb && bb.height > maxTickH) maxTickH = bb.height;
+      });
+
+      // 3) Recompute bottom margin with real size + buffer
+      var bottomMargin = Math.ceil(maxTickH + tickSize + extra);
+      var newHeight = h - bottomMargin;
+
+      var chartH = (newHeight !== height) ? newHeight : height;
+
+      // Ensure scales use the final height
+      yScale.range([0, chartH]);
+      y.range([chartH, 0]);
+
+      // Axis at the final spot
+      xAxisG.attr("transform", "translate(0," + chartH + ")").call(xAxis);
+      xAxisG.selectAll(".tick text")
+        .style("font-size", fontSize + "px")
+        .attr("dy", "0.71em");
+
+      // Bars — update with final height
+      rects
+        .attr("x", function(d, i) { return xScale(i); })
+        .attr("y", function(d) { return chartH - yScale(d.value); })
+        .attr("width", xScale.rangeBand())
+        .attr("height", function(d) { return yScale(d.value); });
 
       // Re-locate text value labels
-      texts.attr("x", function(d, i) {
-        return xScale(i) + xScale.rangeBand() / 2;
-      }).attr("y", function(d) {
-        return height - yScale(d.value) + lineHeight;
-      });
+      texts
+        .attr("x", function(d, i) { return xScale(i) + xScale.rangeBand() / 2; })
+        .attr("y", function(d) { return chartH - yScale(d.value) + Math.ceil(1.25 * fontSize); });
 
       // Hide ticks from readspeakers, the entire rectangle is already labelled
       xAxisG.selectAll("text").attr("aria-hidden", true);
