@@ -10,7 +10,7 @@
   "machineName": "H5P.Chart",
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 21
+    "minorVersion": 28
   },
   "embedTypes": [
     "iframe"
