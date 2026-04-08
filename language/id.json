@@ -1,0 +1,40 @@
+{
+  "semantics": [
+    {
+      "label": "Jenis bagan",
+      "options": [
+        {
+          "label": "Bagan Lingkaran"
+        },
+        {
+          "label": "Bagan Batang"
+        }
+      ]
+    },
+    {
+      "label": "Elemen data",
+      "entity": "opsi",
+      "field": {
+        "label": "Elemen data",
+        "fields": [
+          {
+            "label": "Nama"
+          },
+          {
+            "label": "Nilai"
+          },
+          {
+            "label": "Warna"
+          },
+          {
+            "label": "Warna Font"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Teks yang dibaca oleh pembaca yang mendefinisikan figur sebagai bagan.",
+      "default": "Bagan"
+    }
+  ]
+}
